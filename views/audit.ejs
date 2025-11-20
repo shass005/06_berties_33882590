@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Welcome to <%=shopData.shopName%></title>
+    <link rel="stylesheet"  type="text/css" href="/main.css" />
+  </head>
+  <body>
+    <h1><%=shopData.shopName%></h1>
+    <h2>Here is the audit history:</h2>
+    <table>
+    <thead>
+        <tr>
+            <th>User Name</th>
+            <th>Success</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% auditlist.forEach(function(audit) { %>
+            <tr>
+                <td><%= audit.username %></td>
+                <td><%= audit.success? 'Success' : 'Failed' %></td>
+                <td><%= new Date(audit.time).toLocaleString() %></td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+</body>
+</html>

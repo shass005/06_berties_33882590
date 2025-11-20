@@ -1,3 +1,4 @@
+require('dotenv').config();
 // Import express and ejs
 var express = require ('express')
 var ejs = require('ejs')
@@ -8,10 +9,10 @@ const path = require('path')
 const app = express()
 const port = 8000
 const db = mysql.createPool({
-    host: 'localhost',
-    user: 'berties_books_app',
-    password: 'qwertyuiop',
-    database: 'berties_books',
+    host: process.env.BB_HOST,
+    user: process.env.BB_USER,
+    password: process.env.BB_PASSWORD,
+    database: process.env.BB_DATABASE,
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
@@ -22,7 +23,6 @@ app.set('view engine', 'ejs')
 
 // Set up the body parser 
 app.use(express.urlencoded({ extended: true }))
-
 // Set up public folder (for css and static js)
 app.use(express.static(path.join(__dirname, 'public')))
 

@@ -23,6 +23,9 @@ router.get('/search-result', function (req, res, next) {
 router.post('/bookadded', function(req, res, next) {
     const bookName = req.body['book-name'];
     const price = req.body.price;
+    if(isNaN(price)|| price<0){
+        return res.send("Enter a Valid Price")
+    }
     const sql = "INSERT INTO books (name, price) VALUES (?, ?)";
     db.query(sql, [bookName, price], (err, result) => {
         if (err) {
@@ -54,5 +57,7 @@ router.get('/bargainbooks', function(req, res, next) {
             res.render("bargainbooks.ejs", {availableBooks:result})
          });
     });
+
+
 // Export the router object so index.js can access it
 module.exports = router
