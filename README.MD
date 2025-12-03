@@ -102,6 +102,7 @@ npm install bcrypt
 npm install express-validator
 npm install express-sanitizer
 npm install express-session
+npm install request
 ```
 4. Create the .env file
 ```bash
